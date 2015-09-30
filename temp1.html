@@ -26,7 +26,7 @@ the grid-->
       };
 
       var tempOne = angular.module("tempOne",[]);
-
+      
       tempOne.controller("tempCtrl" , function ($scope){
              $scope.tempitem = picture;
              $scope.select = false;
@@ -39,18 +39,41 @@ the grid-->
              $scope.hideBlock = function (hide){
                 $scope.hide = true;
              }
+             
+             $scope.total = 8;
+
+             var totalItems = $scope.total;
+             var itemPerPage = 4;
+             var totalPage = totalItems / itemPerPage;
+             $scope.pageNo = totalPage;
+
+
+             $scope.range = function(count){
+
+                 var ratings = []; 
+
+               for (var i = 0; i < count; i++) { 
+                ratings.push(i) 
+              } 
+
+                return ratings;
+              }
+
+              $scope.nextOrLast = function(index){
+                
+              }
       });
 
-
+       
 
     </script>
   </head>
   <body ng-controller="tempCtrl">
    <div class="container">
   	<!--The title starts-->
-  	<div class="jumbotron">
+  	<div class="jumbotron" ng-model="total">
   		<h3>The Picture Gallry</h3>
-  		<p>The display is to show the grid picture</p>
+  		<p>The display is to show the grid picture : <label>{{total}}</label></p>
   		<label>Template One</label>
   	</div>
   	<!--The title ends-->
@@ -77,6 +100,11 @@ the grid-->
          </div>
        </div>
       </div>
+      <table align="right">
+      <tr ng-model="pageNo">
+          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default" ng-click="nextOrLast($index)">{{$index}}</Button></td>
+       </tr>
+       <table>
      </div>
   </body>
 </html>
