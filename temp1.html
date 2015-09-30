@@ -18,15 +18,31 @@ the grid-->
          items: [{name: "New York City", description : "The biggest city in USA" ,genre : "City" ,url : "img/nyc1.jpg"},
                  {name: "San Fransisco", description : "Lots of the biggest companies of the world in the earth", genre : "City",url : "img/sf1.jpg"},
                  {name: "Los Angeles", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"},
-                 {name: "San Diego", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"},
-                 {name: "Seattle", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"}]
+                 {name: "San Diego", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
+                 {name: "Seattle", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sea1.jpg"},
+                  {name: "Atlanta", description: "The big city sprung in GA. The Olympic is a symbol of the Atlanta", genre : "City",url : "img/Atl1.jpg"},
+                   {name: "Boston", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
+                    {name: "Chicago", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},]
       };
 
       var tempOne = angular.module("tempOne",[]);
 
       tempOne.controller("tempCtrl" , function ($scope){
              $scope.tempitem = picture;
+             $scope.select = false;
+             $scope.hide = true;
+             $scope.show = function (item){
+                  $scope.itemShow = item;
+                  $scope.hide = false;
+             }
+
+             $scope.hideBlock = function (hide){
+                $scope.hide = true;
+             }
       });
+
+
+
     </script>
   </head>
   <body ng-controller="tempCtrl">
@@ -38,9 +54,17 @@ the grid-->
   		<label>Template One</label>
   	</div>
   	<!--The title ends-->
-    
+    </div>
+
+    <div class="ng-hide" align="center" ng-model="itemShow" ng-hide="hide" >
+      <h3>{{itemShow.name}}</h3>
+      <image src="{{itemShow.url}}" heigth="400px" width="400px">
+      <h5>{{itemShow.description}}<button ng-click="hideBlock(hide)">Hide</button></h5>
+    </div>
+    </br></br></br>
     <!--The format is <div class row and class col >-->
     <!--For the repeat we use the AngularJs repeat from the json file or json object-->
+    <div class="container">
     <div class="row">
       <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem.items">
          <div class="thumbnail" style="height: 230px">
@@ -48,14 +72,11 @@ the grid-->
          	<div class="caption">
          		<h5><a href="#" alt="link to the full page of the products">{{item.name}}</a></h5>
          		<p><a href="#"><font color="grey">{{item.genre}}</font></a></p>
-         		<p><a href="#" class="btn btn-default" role="button">Read More</a></p>
-         	</div>
+         		<p><a class="btn btn-default" role="button" ng-click="show(item)">Read More</a></p>
+           </div>
          </div>
+       </div>
       </div>
-
-      
-
-    </div>
-   </div>
+     </div>
   </body>
 </html>
