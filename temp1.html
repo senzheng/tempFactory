@@ -28,7 +28,7 @@ the grid-->
       var tempOne = angular.module("tempOne",[]);
       
       tempOne.controller("tempCtrl" , function ($scope){
-             $scope.tempitem = picture;
+             $scope.tempitem = picture.items;
              $scope.select = false;
              $scope.hide = true;
              $scope.show = function (item){
@@ -89,7 +89,7 @@ the grid-->
     <!--For the repeat we use the AngularJs repeat from the json file or json object-->
     <div class="container">
     <div class="row">
-      <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem.items">
+      <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem">
          <div class="thumbnail" style="height: 230px">
          	<img src="{{item.url}}" alt="..."  width="70%">
          	<div class="caption">
@@ -102,7 +102,7 @@ the grid-->
       </div>
       <table align="right">
       <tr ng-model="pageNo">
-          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default" ng-click="nextOrLast($index)">{{$index}}</Button></td>
+          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default"  ng-class="" ng-click="nextOrLast($index + 1)">{{$index + 1}}</Button></td>
        </tr>
        <table>
      </div>
