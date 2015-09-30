@@ -1,7 +1,7 @@
 <!--This file is to provide the graphic data and the metadata for its. The Format is 
 the grid-->
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html ng-app="tempOne">
   <head>
   	<title>The picture showoff one</title>
   	<!-- Latest compiled and minified CSS -->
@@ -10,8 +10,26 @@ the grid-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <!--The Json database for the pictures-->
+    <script>
+      var picture = {
+         user: "sen",
+         items: [{name: "New York City", description : "The biggest city in USA" ,genre : "City" ,url : "img/nyc1.jpg"},
+                 {name: "San Fransisco", description : "Lots of the biggest companies of the world in the earth", genre : "City",url : "img/sf1.jpg"},
+                 {name: "Los Angeles", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"},
+                 {name: "San Diego", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"},
+                 {name: "Seattle", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"}]
+      };
+
+      var tempOne = angular.module("tempOne",[]);
+
+      tempOne.controller("tempCtrl" , function ($scope){
+             $scope.tempitem = picture;
+      });
+    </script>
   </head>
-  <body>
+  <body ng-controller="tempCtrl">
    <div class="container">
   	<!--The title starts-->
   	<div class="jumbotron">
@@ -24,27 +42,19 @@ the grid-->
     <!--The format is <div class row and class col >-->
     <!--For the repeat we use the AngularJs repeat from the json file or json object-->
     <div class="row">
-      <div class="col-sm-5 col-md-3">
-         <div class="thumbnail" style="height: 320px">
-         	<img src="..." alt="..."  width="180">
+      <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem.items">
+         <div class="thumbnail" style="height: 230px">
+         	<img src="{{item.url}}" alt="..."  width="70%">
          	<div class="caption">
-         		<h5><a href="#" alt="link to the full page of the products">Picture Title</a></h5>
-         		<p><a href="#"><font color="grey">The genre</font></a></p>
-         		<p><a href="#" class="btn btn-default" role="button">Button</a></p>
+         		<h5><a href="#" alt="link to the full page of the products">{{item.name}}</a></h5>
+         		<p><a href="#"><font color="grey">{{item.genre}}</font></a></p>
+         		<p><a href="#" class="btn btn-default" role="button">Read More</a></p>
          	</div>
          </div>
       </div>
 
-      <div class="col-sm-5 col-md-3">
-         <div class="thumbnail" style="height: 320px">
-         	<img src="..." alt="..."  width="180">
-         	<div class="caption">
-         		<h5><a href="#" alt="link to the full page of the products">Picture Title</a></h5>
-         		<p><a href="#"><font color="grey">The genre</font></a></p>
-         		<p><a href="#" class="btn btn-default" role="button">Button</a></p>
-         	</div>
-         </div>
-      </div>
+      
+
     </div>
    </div>
   </body>
