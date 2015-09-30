@@ -13,6 +13,7 @@ the grid-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <!--The Json database for the pictures-->
     <script>
+
       var picture = {
          user: "sen",
          items: [{name: "New York City", description : "The biggest city in USA" ,genre : "City" ,url : "img/nyc1.jpg"},
@@ -24,39 +25,45 @@ the grid-->
                  {name: "Boston", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
                  {name: "Chicago", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},]
       };
-
+      //The lite data stored in the json file and for the template.
       var tempOne = angular.module("tempOne",[]);
-      
+      //The angularjs controller is as below:
       tempOne.controller("tempCtrl" , function ($scope){
              $scope.tempitem = picture.items.slice(0,4);
-             $scope.select = false;
+             // the default that we show 4 items per page
              $scope.hide = true;
+             // the hide means that the data shown should be hidden
              $scope.itemNumber = 4;
-
+             // the items shown per page
 
              $scope.show = function (item){
                   $scope.itemShow = item;
                   $scope.hide = false;
              }
+             //when a item being selected and the detail will show in the particular place.
 
              $scope.hideBlock = function (hide){
                 $scope.hide = true;
              }
-             
+             //when finishing a item and proceed for other one, 
              $scope.total = picture.items.length;
-
+             //the total show the total number of items 
              var totalItems = picture.items.length;
+
              var itemPerPage = $scope.itemNumber;
+             //The number of items per page shows in the screen
              var totalPage = totalItems / itemPerPage;
+             //the number of items will be shown in number of pages.
              $scope.pageNo = totalPage;
+             //same above
 
              $scope.NumberOfPage = function (number) {
                 $scope.itemNumber =  number;
                 $scope.pageNo = totalItems / number;
                 $scope.tempitem = picture.items.slice(0,number);
-                 
-
               }
+              //the function performs when the certain number items being selected and the screen will show following rules.
+
              $scope.range = function(count){
 
                  var ratings = []; 
@@ -67,12 +74,14 @@ the grid-->
 
                 return ratings;
               }
+               // automatically calculate the number of pages we need based on dynamical changes of the number of items.
+
                $scope.buttonOne = 1;
               $scope.nextOrLast = function(index){
                  $scope.buttonOne = index;
                  $scope.tempitem = picture.items.slice( (index - 1)*itemPerPage, (index - 1)*itemPerPage + itemPerPage);
               }
-               
+              // select the different pages  and show orderd sequence of the pages 
               
       });
 
@@ -98,7 +107,7 @@ the grid-->
     </div>
     </br></br></br>
     <!--The format is <div class row and class col >-->
-    <!--For the repeat we use the AngularJs repeat from the json file or json object-->
+    
     <div class="container">
      <table align="right">
       <div>
@@ -109,6 +118,8 @@ the grid-->
      </table>
    </div>
     <br/></br>
+    
+    <!--For the repeat we use the AngularJs repeat from the json file or json object-->
     <div class="container">
     <div class="row">
       <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem">
@@ -127,6 +138,8 @@ the grid-->
           <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default"  ng-class="{'btn-primary': buttonOne == $index + 1}" ng-click="nextOrLast($index + 1)">{{$index + 1}}</Button></td>
        </tr>
        <table>
+        <!--The paginate-->
      </div>
+     
   </body>
 </html>
