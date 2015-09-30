@@ -20,17 +20,20 @@ the grid-->
                  {name: "Los Angeles", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/la1.jpg"},
                  {name: "San Diego", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
                  {name: "Seattle", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sea1.jpg"},
-                  {name: "Atlanta", description: "The big city sprung in GA. The Olympic is a symbol of the Atlanta", genre : "City",url : "img/Atl1.jpg"},
-                   {name: "Boston", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
-                    {name: "Chicago", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},]
+                 {name: "Atlanta", description: "The big city sprung in GA. The Olympic is a symbol of the Atlanta", genre : "City",url : "img/Atl1.jpg"},
+                 {name: "Boston", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},
+                 {name: "Chicago", description: "The most beaufiful beaches in the LA area. And sunshine all year round", genre : "City",url : "img/sd1.jpg"},]
       };
 
       var tempOne = angular.module("tempOne",[]);
       
       tempOne.controller("tempCtrl" , function ($scope){
-             $scope.tempitem = picture.items;
+             $scope.tempitem = picture.items.slice(0,4);
              $scope.select = false;
              $scope.hide = true;
+             $scope.itemNumber = 4;
+
+
              $scope.show = function (item){
                   $scope.itemShow = item;
                   $scope.hide = false;
@@ -40,14 +43,20 @@ the grid-->
                 $scope.hide = true;
              }
              
-             $scope.total = 8;
+             $scope.total = picture.items.length;
 
-             var totalItems = $scope.total;
-             var itemPerPage = 4;
+             var totalItems = picture.items.length;
+             var itemPerPage = $scope.itemNumber;
              var totalPage = totalItems / itemPerPage;
              $scope.pageNo = totalPage;
 
+             $scope.NumberOfPage = function (number) {
+                $scope.itemNumber =  number;
+                $scope.pageNo = totalItems / number;
+                $scope.tempitem = picture.items.slice(0,number);
+                 
 
+              }
              $scope.range = function(count){
 
                  var ratings = []; 
@@ -58,10 +67,13 @@ the grid-->
 
                 return ratings;
               }
-
+               $scope.buttonOne = 1;
               $scope.nextOrLast = function(index){
-                
+                 $scope.buttonOne = index;
+                 $scope.tempitem = picture.items.slice( (index - 1)*itemPerPage, (index - 1)*itemPerPage + itemPerPage);
               }
+               
+              
       });
 
        
@@ -88,6 +100,16 @@ the grid-->
     <!--The format is <div class row and class col >-->
     <!--For the repeat we use the AngularJs repeat from the json file or json object-->
     <div class="container">
+     <table align="right">
+      <div>
+        <td><h4 align="right">The items per page:&nbsp;&nbsp;</h4></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(4)" ng-class="{'btn-primary' : itemNumber == 4}">4</button></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(8)" ng-class="{'btn-primary' : itemNumber == 8}">8</button></td>
+      </div>
+     </table>
+   </div>
+    <br/></br>
+    <div class="container">
     <div class="row">
       <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem">
          <div class="thumbnail" style="height: 230px">
@@ -102,7 +124,7 @@ the grid-->
       </div>
       <table align="right">
       <tr ng-model="pageNo">
-          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default"  ng-class="" ng-click="nextOrLast($index + 1)">{{$index + 1}}</Button></td>
+          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default"  ng-class="{'btn-primary': buttonOne == $index + 1}" ng-click="nextOrLast($index + 1)">{{$index + 1}}</Button></td>
        </tr>
        <table>
      </div>
