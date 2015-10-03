@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///Users/tommy/Documents/tempFactory/temp1.html -->
+<html ng-app="tempOne" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+  	<title>The picture showoff one</title>
+  	<!-- Latest compiled and minified CSS -->
+    <script src="file://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="./The picture showoff one_files/angular.min.js"></script>
+    <script src="./The picture showoff one_files/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+   <script src="./The picture showoff one_files/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./The picture showoff one_files/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="./The picture showoff one_files/bootstrap-theme.min.css">
+    <!--The Json database for the pictures-->
+    <script src="./The picture showoff one_files/customFIlters.js"></script>
+    <script src="./The picture showoff one_files/tempOne.js"></script>
+    <script>
+
+      angular.module("tempOne",[]);
+      //The angularjs controller is as below:
+      
+       
+
+    </script>
+    
+    
+  </head>
+  <body ng-controller="tempCtrl" class="ng-scope">
+   <div class="container">
+  	<!--The title starts-->
+  	<div class="jumbotron ng-pristine ng-untouched ng-valid" ng-model="total">
+  		<h3>The Picture Gallry</h3>
+  		<p>The display is to show the grid picture : <label class="ng-binding">{{total}}</label></p>
+  		<label>Template One</label>
+  	</div>
+  	<!--The title ends-->
+    </div>
+   
+    <div class="ng-hide ng-pristine ng-untouched ng-valid" align="center" ng-model="itemShow" ng-hide="hide">
+      <h3 class="ng-binding">{{itemShow.name}}</h3>
+      <img src="file:///Users/tommy/Documents/tempFactory/%7B%7BitemShow.url%7D%7D" heigth="400px" width="400px">
+      <h5 class="ng-binding">{{itemShow.description}}<button ng-click="hideBlock(hide)">Hide</button></h5>
+    </div>
+    <br><br><br>
+    <!--The format is <div class row and class col >-->
+    <!--The button for filter the different category-->
+    <div class="container">
+       <!-- Single button -->
+       <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Menu <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <!-- ngRepeat: categoryList in CategoryScope -->
+          </ul>
+       </div>
+    </div>
+    <div class="container">
+     <div>
+        </div><table align="right">
+      <tbody><tr><td><h4 align="right">The items per page:&nbsp;&nbsp;</h4></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(4)" ng-class="{&#39;btn-primary&#39; : itemNumber == 4}">4</button></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(8)" ng-class="{&#39;btn-primary&#39; : itemNumber == 8}">8</button></td>
+      
+     </tr></tbody></table>
+   </div>
+    <br><br>
+    
+    <!--For the repeat we use the AngularJs repeat from the json file or json object-->
+    <div class="container ng-binding">
+    <div class="row">
+      <!-- ngRepeat: item in tempitem -->
+      </div>
+      <table align="right">
+      <tbody><tr ng-model="pageNo" class="ng-pristine ng-untouched ng-valid">
+        
+          <!-- ngRepeat: n in range(pageNo) -->
+       </tr>
+       </tbody></table>
+     {{test}}
+  <table>
+        <!--The paginate-->
+     
+</table></div></body></html>

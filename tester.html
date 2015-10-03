@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="tempOne">
+  <head>
+  	<title>The picture showoff one</title>
+  	<!-- Latest compiled and minified CSS -->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!--The Json database for the pictures-->
+    <script>
+
+      var picture = {
+         "user": "sen",
+         "items": [{"name": "New York City", "description" : "The biggest city in USA" ,"genre" : "City" ,url : "img/nyc1.jpg"},
+                 {"name": "San Fransisco", "description" : "Lots of the biggest companies of the world in the earth", "genre" : "City","url" : "img/sf1.jpg"},
+                 {"name": "Los Angeles", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/la1.jpg"},
+                 {"name": "San Diego", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
+                 {"name": "Seattle", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sea1.jpg"},
+                 {"name": "Atlanta", "description": "The big city sprung in GA. The Olympic is a symbol of the Atlanta", "genre" : "City","url" : "img/Atl1.jpg"},
+                 {"name": "Boston", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
+                 {"name": "Chicago", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
+                 {"name": "Husky", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/h1.jpg"},
+                 {"name": "Golden Retriver", "description": "The big city sprung in GA. The Olympic is a symbol of the Atlanta", "genre" : "Animal","url" : "img/gr1.jpg"},
+                 {"name": "German Shalper", "description": "The most good dog in the world. And sunshine all year round", "genre" : "Animal","url" : "img/gs1.jpeg"},
+                 {"name": "Smoyed", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/sm1.jpeg"}]
+      };
+
+
+      //The lite data stored in the json file and for the template.
+      var tempOne = angular.module("tempOne",[]);
+      //The angularjs controller is as below:
+      tempOne.controller("tempCtrl" , function ($scope){
+           var temp = picture.items;
+           
+
+          
+           
+
+           
+           $scope.show = temp.length;
+
+      });
+
+       
+
+    </script>
+    
+    
+  </head>
+  <body ng-controller="tempCtrl">
+        {{show}}
+  </body>
+</html>
