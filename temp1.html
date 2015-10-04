@@ -13,6 +13,17 @@ the grid-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <style>
+       .img {
+    position: relative;
+    float: left;
+    width:  253px;
+    height: 190px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+    </style>
     <!--The Json database for the pictures-->
     <script>
       angular.module("tempOne",["customFilters"]);
@@ -91,7 +102,7 @@ the grid-->
       </div>
      </table>
   
-     {{test}}
+
    </div>
     </br></br>
     
@@ -99,8 +110,8 @@ the grid-->
     <div class="container">
     <div class="row">
       <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem">
-         <div class="thumbnail" style="height: 230px">
-         	<img src="{{item.url}}" alt="..."  width="70%">
+         <div class="thumbnail" style="height: 290px; weight : """>
+         	<div class="img" style="background-image:url({{item.url}});"></div>
          	<div class="caption">
          		<h5><a href="#" alt="link to the full page of the products">{{item.name}}</a></h5>
          		<p><a href="#"><font color="grey">{{item.genre}}</font></a></p>
