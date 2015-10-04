@@ -20,7 +20,7 @@ the grid-->
     </script>
     <script src="controller/tempOne.js"></script>
     <script src="filters/customFilters.js"></script>
-    <script src="controller/itemController.js"></script>
+    <!--<script src="controller/itemController.js"></script>-->
   </head>
   <body ng-controller="tempCtrl">
    <div class="container">
@@ -48,18 +48,23 @@ the grid-->
              Menu <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
+            <li><a href="" ng-click="showOne(0)">All Categories</a></li>
+            <li role="separator" class="divider"></li>
             <li ng-repeat="categoryList in CategoryScope | unique: 'genre' "><a href = "" ng-click="showOne(categoryList)">{{categoryList}}</a></li>
           </ul>
        </div>
     </div>
-    <div class="container" ng-controller="itemController">
+    <div class="container">
+     
      <table align="right">
       <div>
-        <td><h4 align="right">The items per page:&nbsp;&nbsp;</h4></td>
-        <td><button class="btn btn-default" ng-click="NumberOfPage(4)" ng-class="{'btn-primary' : itemNumber == 4}">4</button></td>
-        <td><button class="btn btn-default" ng-click="NumberOfPage(8)" ng-class="{'btn-primary' : itemNumber == 8}">8</button></td>
+        <td><h4 align="right" >The items per page:&nbsp;&nbsp;</h4></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(4,itemC)" ng-class="{'btn-primary' : itemNumber == 4}">4</button></td>
+        <td><button class="btn btn-default" ng-click="NumberOfPage(8,itemC)" ng-class="{'btn-primary' : itemNumber == 8}">8</button></td>
       </div>
      </table>
+  
+     {{test}}
    </div>
     </br></br>
     
@@ -78,13 +83,13 @@ the grid-->
        </div>
       </div>
       <table align="right">
-      <tr ng-model="pageNo">
+      <tr>
         
-          <td ng-repeat="n in range(pageNo)"><Button class="btn btn-default"  ng-class="{'btn-primary': buttonOne == $index + 1}" ng-click="nextOrLast($index + 1)">{{$index + 1}}</Button></td>
+          <td ng-repeat="n in range(totalItem / itemNumber)"><Button class="btn btn-default"  ng-class="{'btn-primary': buttonOne == $index + 1}" ng-click="nextOrLast($index + 1, itemNumber,itemC)">{{$index + 1}}</Button></td>
        </tr>
        <table>
         <!--The paginate-->
      </div>
-     {{test}}
+     
   </body>
 </html>

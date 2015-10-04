@@ -14,6 +14,7 @@ angular.module("tempOne")
                       {"name": "Husky", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/h1.jpg"},
                       {"name": "Golden Retriver", "description": "The big city sprung in GA. The Olympic is a symbol of the Atlanta", "genre" : "Animal","url" : "img/gr1.jpg"},
                       {"name": "German Shalper", "description": "The most good dog in the world. And sunshine all year round", "genre" : "Animal","url" : "img/gs1.jpeg"},
+                      {"name": "Smoyed", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/sm1.jpeg"},
                       {"name": "Smoyed", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/sm1.jpeg"}]
              };
 
@@ -21,20 +22,25 @@ angular.module("tempOne")
 
 
              $scope.tempitem = picture.items.slice(0,4);
+             $scope.itemC = picture.items;
              // the default that we show 4 items per page
              $scope.hide = true;
              // the hide means that the data shown should be hidden
              $scope.itemNumber = 4;
              
              // the items shown per page
-             
-             var temp = new Array();
+             $scope.totalItem = picture.items.length;
+            var temp = new Array();
+
+                temp = picture.items;
 
             $scope.CategoryScope = picture.items;
+
 
              $scope.show = function (item){
                   $scope.itemShow = item;
                   $scope.hide = false;
+
              }
              //when a item being selected and the detail will show in the particular place.
 
@@ -42,38 +48,46 @@ angular.module("tempOne")
                 $scope.hide = true;
              }
                 
-                temp = picture.items;
-                $scope.test = temp;
+                var result = [];
+                var keys = {};
+             $scope.showOne = function (category){
+                  result = [];
+                  keys = {};
+              if(category != 0){
+                 keys[category] = true;
+                 for(var i = 0; i < picture.items.length; i++){
+                       var val = picture.items[i].genre;
+                       if(!angular.isUndefined(keys[val])){
+                            result.push(picture.items[i]);
+                       }
+                      
+                 }
+               }else{
+                    result = picture.items;
+               }
 
-               $scope.showOne = function (category){
-                 temp = [];
-                for(var i = 0; i < picture.items.length; i++){
-                  if(picture.items[i].genre === category){
-                    temp.push(picture.items[i]);
-                    
-                  }
-                }
-                
-                
-                $scope.pageNo = temp.length / $scope.itemNumber;
-                $scope.tempitem = temp.slice(0,$scope.itemNumber);
-                $scope.test = temp;
-
+ 
+                 $scope.tempitem = result.slice(0,$scope.itemNumber);
+                 $scope.totalItem = result.length;
+                 //temp = result;
+                 //$scope.test = result;
+                 $scope.itemC = result;
+                 $scope.buttonOne = 1;
+                 
               }
-               $scope.total = temp.length;
-             //when finishing a item and proceed for other one, 
-             $scope.total = temp.length;
-             //the total show the total number of items 
-             var totalItems = $scope.total;
+                 
 
-             var itemPerPage = $scope.itemNumber;
-             //The number of items per page shows in the screen
-             var totalPage = totalItems / itemPerPage;
-             //the number of items will be shown in number of pages.
-             
-              
-             $scope.pageNo = totalPage;
-             //same above
+              $scope.NumberOfPage = function (number,itemC) {
+
+                      $scope.itemNumber = number;
+                      $scope.tempitem = itemC.slice(0,number);
+                      $scope.buttonOne = 1;
+                  }
+                 //eetemp = $scope.test;
+                
+
+
+                 
              
              
               //the function performs when the certain number items being selected and the screen will show following rules.
@@ -91,9 +105,9 @@ angular.module("tempOne")
                // automatically calculate the number of pages we need based on dynamical changes of the number of items.
 
                $scope.buttonOne = 1;
-              $scope.nextOrLast = function(index){
+              $scope.nextOrLast = function(index, itemPerPage,itemC){
                  $scope.buttonOne = index;
-                 $scope.tempitem = temp.slice( (index - 1)*itemPerPage, (index - 1)*itemPerPage + itemPerPage);
+                 $scope.tempitem = itemC.slice( (index - 1)* itemPerPage, (index - 1)* itemPerPage + itemPerPage);
               }
               // select the different pages  and show orderd sequence of the pages 
               
