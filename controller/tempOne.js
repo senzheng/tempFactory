@@ -30,6 +30,7 @@ angular.module("tempOne")
              
              // the items shown per page
              $scope.totalItem = picture.items.length;
+             $scope.total = $scope.itemC.length;
             var temp = new Array();
 
                 temp = picture.items;

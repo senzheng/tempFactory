@@ -23,37 +23,64 @@ the grid-->
     <!--<script src="controller/itemController.js"></script>-->
   </head>
   <body ng-controller="tempCtrl">
-   <div class="container">
-  	<!--The title starts-->
-  	<div class="jumbotron" ng-model="total">
-  		<h3>The Picture Gallry</h3>
-  		<p>The display is to show the grid picture : <label>{{total}}</label></p>
-  		<label>Template One</label>
-  	</div>
-  	<!--The title ends-->
+    <nav class="navbar navbar-inverse">
+       <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">TempOne</a>
     </div>
-   
-    <div class="ng-hide" align="center" ng-model="itemShow" ng-hide="hide" >
-      <h3>{{itemShow.name}}</h3>
-      <image src="{{itemShow.url}}" heigth="400px" width="400px">
-      <h5>{{itemShow.description}}<button ng-click="hideBlock(hide)">Hide</button></h5>
-    </div>
-    </br></br></br>
-    <!--The format is <div class row and class col >-->
-    <!--The button for filter the different category-->
-    <div class="container">
-       <!-- Single button -->
-       <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Menu <span class="caret"></span>
-          </button>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="" ng-click="showOne(0)">All Categories</a></li>
             <li role="separator" class="divider"></li>
             <li ng-repeat="categoryList in CategoryScope | unique: 'genre' "><a href = "" ng-click="showOne(categoryList)">{{categoryList}}</a></li>
           </ul>
-       </div>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <div class="ng-hide" align="center" ng-model="itemShow" ng-hide="hide" >
+      <h3>{{itemShow.name}}</h3>
+      <image src="{{itemShow.url}}" width="350xp" height ="200px">
+      <h5>{{itemShow.description}}<button ng-click="hideBlock(hide)">Hide</button></h5>
     </div>
+    </br></br></br>
+    <!--The format is <div class row and class col >-->
+    <!--The button for filter the different category-->
+    
     <div class="container">
      
      <table align="right">
