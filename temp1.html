@@ -13,17 +13,7 @@ the grid-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <style>
-       .img {
-    position: relative;
-    float: left;
-    width:  253px;
-    height: 190px;
-    background-position: 50% 50%;
-    background-repeat:   no-repeat;
-    background-size:     cover;
-}
-    </style>
+    <link rel="stylesheet" href="css/style.css">
     <!--The Json database for the pictures-->
     <script>
       angular.module("tempOne",["customFilters"]);
@@ -108,6 +98,12 @@ the grid-->
     
     <!--For the repeat we use the AngularJs repeat from the json file or json object-->
     <div class="container">
+    <div class="panel panel-info"> 
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          {{title}}
+        </h3>
+      </div>
     <div class="row">
       <div class="col-sm-5 col-md-3" ng-repeat="item in tempitem">
          <div class="thumbnail" style="height: 290px; weight : """>
@@ -120,13 +116,13 @@ the grid-->
          </div>
        </div>
       </div>
-      <table align="right">
-      <tr>
-        
-          <td ng-repeat="n in range(totalItem / itemNumber)"><Button class="btn btn-default"  ng-class="{'btn-primary': buttonOne == $index + 1}" ng-click="nextOrLast($index + 1, itemNumber,itemC)">{{$index + 1}}</Button></td>
-       </tr>
-       <table>
-        <!--The paginate-->
+         <nav id="navPagination">
+            <ul class="pagination">
+              <li ng-repeat="n in range(totalItem / itemNumber)" ng-class="{'active': buttonOne == $index + 1}"><a href="#"  ng-click="nextOrLast($index + 1, itemNumber,itemC)">{{$index + 1}}</a></li>
+            </ul>
+          </nav>
+      </div>
+
      </div>
      
   </body>

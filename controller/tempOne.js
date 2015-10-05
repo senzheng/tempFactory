@@ -9,13 +9,13 @@ angular.module("tempOne")
                       {"name": "San Diego", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
                       {"name": "Seattle", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sea1.jpg"},
                       {"name": "Atlanta", "description": "The big city sprung in GA. The Olympic is a symbol of the Atlanta", "genre" : "City","url" : "img/Atl1.jpg"},
-                      {"name": "Boston", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
-                      {"name": "Chicago", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/sd1.jpg"},
+                      {"name": "Boston", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/bt1.jpg"},
+                      {"name": "Chicago", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "City","url" : "img/chi1.jpg"},
                       {"name": "Husky", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/h1.jpg"},
                       {"name": "Golden Retriver", "description": "The big city sprung in GA. The Olympic is a symbol of the Atlanta", "genre" : "Animal","url" : "img/gr1.jpg"},
                       {"name": "German Shalper", "description": "The most good dog in the world. And sunshine all year round", "genre" : "Animal","url" : "img/gs1.jpeg"},
                       {"name": "Smoyed", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/sm1.jpeg"},
-                      {"name": "Smoyed", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/sm1.jpeg"}]
+                      {"name": "Corgi", "description": "The most beaufiful beaches in the LA area. And sunshine all year round", "genre" : "Animal","url" : "img/cor1.jpg"}]
              };
 
 
@@ -27,7 +27,7 @@ angular.module("tempOne")
              $scope.hide = true;
              // the hide means that the data shown should be hidden
              $scope.itemNumber = 4;
-             
+             $scope.title = "All Category";
              // the items shown per page
              $scope.totalItem = picture.items.length;
              $scope.total = $scope.itemC.length;
@@ -63,13 +63,17 @@ angular.module("tempOne")
                        }
                       
                  }
+                    $scope.title = category;
+                 
                }else{
                     result = picture.items;
+                    $scope.title = "All Category";
                }
 
  
                  $scope.tempitem = result.slice(0,$scope.itemNumber);
                  $scope.totalItem = result.length;
+                 
                  //temp = result;
                  //$scope.test = result;
                  $scope.itemC = result;
