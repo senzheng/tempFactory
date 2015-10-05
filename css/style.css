@@ -1,0 +1,22 @@
+.img {
+    position: relative;
+    float: left;
+    width:  253px;
+    height: 190px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+#navPagination {
+    text-align: right;
+    height: 50;
+    margin: 0px;
+}
+
+#navPagination ul {
+	margin: 0px;
+}
+
+
+
