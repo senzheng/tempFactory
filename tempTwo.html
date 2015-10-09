@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html ng-app="tempTwo">
   <head>
-  	<title>tempTwo</title>
+  	<title>The Calender</title>
   	<!-- Latest compiled and minified CSS -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
@@ -21,15 +21,17 @@
     <!--<script src="controller/itemController.js"></script>-->
   </head>
   <body ng-controller="tempCtrl">
+
+
     <div class="container">
+     <h3 align="center">{{todayYear}}</h3>
+
      <div class="row">
-      <div class="col-sm-5 col-md-2" ng-repeat="n in range(numberOfDay)">
-         <div class="thumbnail">
+      <div class="col-sm-5 col-md-2" ng-repeat="n in range(numberOfDay)" ng-model="day = getDay($index)">
+         <div class="thumbnail" height="600px">
           <div class="caption">
-            <h5><a href="#" alt="link to the full page of the products">{{$index + 1}}</a></h5>
-            <ul>
-              <li class="eventslist" ng-repeat="content in daysEvent($index + 1)" ng-class="{'eventslist' : content.Done == false}">{{content.content}} {{content.time}}</li>
-            </ul>
+            <h5><a href="#" alt="link to the full page of the products">{{$index + 1}} / {{todayMonth}}</a></h5>
+            
             <p>Read More</p>
            </div>
          </div>
