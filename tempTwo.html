@@ -11,16 +11,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleTwo.css">
     <!--The Json database for the pictures-->
     <script>
-      angular.module("temptwo",[]);
+      angular.module("tempTwo",[]);
       //The angularjs controller is as below:
     </script>
-    
+    <script src="controller/tempTwo.js"></script>
     <!--<script src="controller/itemController.js"></script>-->
   </head>
-  <body>
-    
+  <body ng-controller="tempCtrl">
+    <div class="container">
+     <div class="row">
+      <div class="col-sm-5 col-md-2" ng-repeat="n in range(numberOfDay)">
+         <div class="thumbnail">
+          <div class="caption">
+            <h5><a href="#" alt="link to the full page of the products">{{$index + 1}}</a></h5>
+            <ul>
+              <li class="eventslist" ng-repeat="content in daysEvent($index + 1)" ng-class="{'eventslist' : content.Done == false}">{{content.content}} {{content.time}}</li>
+            </ul>
+            <p>Read More</p>
+           </div>
+         </div>
+       </div>
+      </div>
+    </div>
   </body>
 </html>
