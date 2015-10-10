@@ -28,15 +28,22 @@
 
      <div class="row">
       <div class="col-sm-5 col-md-2" ng-repeat="n in range(numberOfDay)" ng-model="getDays($index + 1)">
-         <div class="thumbnail" height="600px">
-          <div class="caption">
-            <h5><a href="#" alt="link to the full page of the products">{{$index + 1}} / {{todayMonth}} {{day}}</a></h5>
-             <div class="well" height="150px" weight="100%">
 
-             </div>
-            <p>Read More</p>
-           </div>
+         <div class="panel panel-success" style="float: none;">
+            <div class="panel-heading">
+              <div class="panel-title">
+                 <h6>{{$index + 1}} / {{todayMonth}} {{day}}</a></h6>
+              </div>
+            </div>
+
+            <div class="panel-body" style="height: 150px; width: 180px;">
+                <p>{{eventss[$index]}}</p>
+            </div>
+            <div class="panel-footer">
+                <p>Read More</p>
+            </div>
          </div>
+
        </div>
       </div>
       <nav>
@@ -44,6 +51,7 @@
           <li ng-repeat="n in range(12)"><a ng-click="lastOrNext($index)">{{$index + 1}}</a></li>
         </ul>
       </nav>
+
     </div>
   </body>
 </html>

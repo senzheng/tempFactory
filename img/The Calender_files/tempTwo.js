@@ -111,13 +111,11 @@ angular.module("tempTwo")
                    for(var i = 0; i < length; i++){
                     buffer[i] = "No EVENTS TODAY!";
                    }
-                  // $scope.test = events.items[0].events.length;
+                   $scope.test = events.items[0].events.length;
                    for(var i = 0; i < events.items.length; i++){
                       if(events.items[i].month == ( mon - 1) ){
-                        buffer[events.items[i].day - 1] = "Events : " ;
-                        for(var j = 0; j < events.items[i].events.length; j++){
-
-                            buffer[events.items[i].day - 1] = buffer[events.items[i].day - 1] +"  "+events.items[i].events[j].contents;
+                        for(var j = 1; j < events.items[i].events.length; j++){
+                            buffer[events.items[i].day - 1] = buffer[events.items[i].day - 1] + events.items[i].events[j].contents;
                           }
                       }
                    }
