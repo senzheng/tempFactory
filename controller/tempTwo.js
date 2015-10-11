@@ -2,19 +2,21 @@ angular.module("tempTwo",["ngRoute"])
          .constant("dataUrl","http://localhost:7777/events.json")
          .config(function($routeProvider){
 
-            $routeProvider.when("/Details",{
-                 templateUrl: "/views/oneday.html"
+            $routeProvider.when("/Details/:Deday",{
+                 templateUrl: "/views/oneday.html",
+                 controller: "tempCtrl2"
          	});
 
          	$routeProvider.otherwise({
-                 templateUrl: "/views/calender.html"
+                 templateUrl: "/views/calender.html",
+                 controller: "tempCtrl"
          	});
 
          	
 
 
           })
-         .controller("tempCtrl" , function ($scope, $http, dataUrl, $location){   
+         .controller("tempCtrl" , function ($scope, $http, $window, dataUrl, $location, sharedProperties){   
              var events = {};
 
             var d = new Date();//get the date of today
@@ -43,13 +45,12 @@ angular.module("tempTwo",["ngRoute"])
              }
                $scope.sizes = events;
 
-
              $scope.todayDay = d.getDate();
              $scope.todayMonth = d.getMonth() + 1;
              $scope.todayYear = d.getFullYear();
              var Month = d.getMonth();
              var Year = d.getFullYear();
-
+             
              $scope.numberOfDay = new Date(Year, Month + 1, 0).getDate();
               
               
@@ -128,15 +129,10 @@ angular.module("tempTwo",["ngRoute"])
 
             $scope.showDetails = function (Dday,Dmonth){
                //Dday is the day to show the 
-
-               for(var i = 0; i < events.items.length; i++){
-               	    if(events.items[i].month == Dmonth && events.items[i].day == Dday){
-               	    	var item = angular.copy(events.items[i]);
-               	    	$http.post()
-               	    }
-               }
+                 $scope.urll = Dday;
+              
             }
-
+            $scope.test = sharedProperties.getObject();
             $scope.lastOrNext = function (index) {
                     $scope.numberOfDay = new Date(Year, index + 1, 0).getDate();
                     $scope.todayMonth = index + 1;
@@ -153,7 +149,10 @@ angular.module("tempTwo",["ngRoute"])
 
                 return ratings;
               }
+          })
+          .controller("tempCtrl2", function ($scope, $routeParams, $http){
+               $scope.test = $routeParams.Deday;
+           });
 
-              
-          
-         });
+
+         

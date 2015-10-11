@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container" ng-controller="tempCtrl">
      <h3 align="center" ng-model="showMonth()">{{todayYear}} &nbsp;&nbsp; {{Months}}</h3>
 
      <div class="row">
+      {{test}}
       <div class="col-sm-5 col-md-2" ng-repeat="n in range(numberOfDay)" ng-model="getDays($index + 1)">
 
          <div class="panel panel-success" style="float: none;">
@@ -15,7 +16,7 @@
                 <p>{{eventss[$index]}}</p>
             </div>
             <div class="panel-footer">
-                <a onclick="showDetails( ($index + 1) , todayMonth)"><p>Read More</p></a>
+                <a href="#Details/{{urll}}" ng-click="showDetails( ($index + 1) , todayMonth)"><p>Read More</p></a>
             </div>
          </div>
 

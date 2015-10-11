@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
-<html >
+<html ng-app="tempTwo">
   <head>
-  	<title>The Calender</title>
-  	<!-- Latest compiled and minified CSS -->
+    <title>The Details</title>
+    <!-- Latest compiled and minified CSS -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
      <script src="ngModules/angular-route.js"></script>
@@ -21,7 +21,22 @@
     
     <!--<script src="controller/itemController.js"></script>-->
   </head>
-  <body ng-app="tempTwo">
-     <ng-view />
-  </body>
-</html>
+  <body ng-controller="tempCtrl2">
+     <div class="container" ng-model="">
+      {{test}}
+      <h4>{{Ditem.year}}</h4>
+      <table class="table table-striped">
+        <tr>
+          <td>Time</td>
+          <td>Event</td>
+          <td>Finished</td>
+        </tr>
+        <tr ng-repeat="item in Ditem.events" >
+          <td>{{item.time}}</td>
+          <td>{{item.contents}}</td>
+          <td>{{item.Done}}</td>
+        </tr>
+      </table>
+      </div> 
+     </body>
+   </html>

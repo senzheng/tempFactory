@@ -1,1 +1,17 @@
-welcome
+<div class="container" ng-controller = "tempCtrl2">
+      {{test}}
+      <h4>{{Ditem.year}}</h4>
+      <table class="table table-striped">
+        <tr>
+          <td>Time</td>
+          <td>Event</td>
+          <td>Finished</td>
+        </tr>
+        <tr ng-repeat="item in Ditem.events" >
+          <td>{{item.time}}</td>
+          <td>{{item.contents}}</td>
+          <td>{{item.Done}}</td>
+        </tr>
+      </table>
+      </div> 
+     </body>
