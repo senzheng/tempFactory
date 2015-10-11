@@ -1,29 +1,31 @@
-angular.module("tempTwo")
-         .controller("tempCtrl" , function ($scope){
-              
-             var events = {
-                  "user": "sen",
-                  "items": [{"year":"2015", "month":"10", "day":3,"events":[{"contents" : "readbooks","time":"1030","Done":"true"},
-                                                                               {"contents" : "Riding","time":"1400","Done":"false"},
-                                                                               {"contents" : "See games","time":"1900","Done":"true"}]},
-                            {"year":"2015", "month":"10", "day":5,"events":[{"contents" : "readbooks","time":"1030","Done":"true"},
-                                                                               {"contents" : "Riding","time":"1400","Done":"false"},
-                                                                               {"contents" : "See games","time":"1900","Done":"true"}]},
-                            {"year":"2015", "month":"10", "day":8,"events":[{"contents" : "readbooks","time":"10:30","Done":"true"},
-                                                                               {"contents" : "Riding","time":"14:00","Done":"false"},
-                                                                               {"contents" : "See games","time":"19:00","Done":"true"}]},
-                            {"year":"2015", "month":"9", "day":22,"events":[{"contents" : "readbooks","time":"10:30","Done":"true"},
-                                                                               {"contents" : "Riding","time":"14:00","Done":"false"},
-                                                                               {"contents" : "See games","time":"19:00","Done":"true"}]},
-                            {"year":"2014", "month":"10", "day":26,"events":[{"contents" : "readbooks","time":"10:30","Done":"true"},
-                                                                               {"contents" : "Riding","time":"14:00","Done":"false"},
-                                                                               {"contents" : "See games","time":"19:00","Done":"true"}]},
-                            {"year":"2016", "month":"10", "day":11,"events":[{"contents" : "readbooks","time":"10:30","Done":"true"},
-                                                                               {"contents" : "Riding","time":"14:00","Done":"false"},
-                                                                               {"contents" : "See games","time":"19:00","Done":"true"}]}]
-             };
+angular.module("tempTwo",["ngRoute"])
+         .constant("dataUrl","http://localhost:7777/events.json")
+         .config(function($routeProvider){
+
+            $routeProvider.when("/Details",{
+                 templateUrl: "/views/oneday.html"
+         	});
+
+         	$routeProvider.otherwise({
+                 templateUrl: "/views/calender.html"
+         	});
+
+         	
+
+
+          })
+         .controller("tempCtrl" , function ($scope, $http, dataUrl, $location){   
+             var events = {};
 
             var d = new Date();//get the date of today
+             $http.get(dataUrl)
+                 .success(function (data){
+                     events.items = data;
+                 })
+                 .error(function (error){
+                      events.items = error;
+                 });
+
 
              $scope.daysEvent = function (day) {
              	var eventContent = new Array();
@@ -39,7 +41,7 @@ angular.module("tempTwo")
                 }
                 return daysEvent
              }
-
+               $scope.sizes = events;
 
 
              $scope.todayDay = d.getDate();
@@ -50,11 +52,7 @@ angular.module("tempTwo")
 
              $scope.numberOfDay = new Date(Year, Month + 1, 0).getDate();
               
-              $scope.showList = function(){
-
-
-              }
-
+              
               $scope.showMonth = function (){
              	if($scope.todayMonth - 1 == 0){
                    $scope.Months = "January";
@@ -83,6 +81,7 @@ angular.module("tempTwo")
              	}
              }
              
+
              $scope.getDays = function (index){
                    var someday = new Date(Year , $scope.todayMonth - 1, index).getDay();
                      //$scope.dayOne = someday;
@@ -109,7 +108,7 @@ angular.module("tempTwo")
                    var buffer = new Array(length);// the buffer is to include the 
 
                    for(var i = 0; i < length; i++){
-                    buffer[i] = "No EVENTS TODAY!";
+                    buffer[i] = "NO EVENTS TODAY!";
                    }
                   // $scope.test = events.items[0].events.length;
                    for(var i = 0; i < events.items.length; i++){
@@ -125,6 +124,19 @@ angular.module("tempTwo")
                  $scope.eventss = buffer;
              }
              
+            
+
+            $scope.showDetails = function (Dday,Dmonth){
+               //Dday is the day to show the 
+
+               for(var i = 0; i < events.items.length; i++){
+               	    if(events.items[i].month == Dmonth && events.items[i].day == Dday){
+               	    	var item = angular.copy(events.items[i]);
+               	    	$http.post()
+               	    }
+               }
+            }
+
             $scope.lastOrNext = function (index) {
                     $scope.numberOfDay = new Date(Year, index + 1, 0).getDate();
                     $scope.todayMonth = index + 1;
