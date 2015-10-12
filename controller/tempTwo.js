@@ -1,5 +1,5 @@
 angular.module("tempTwo",["ngRoute"])
-         .constant("dataUrl","http://localhost:7777/events.json")
+         .constant("dataUrl","http://localhost:7707/events.json")
          .config(function($routeProvider){
 
             $routeProvider.when("/Details/:Deday",{
@@ -20,6 +20,7 @@ angular.module("tempTwo",["ngRoute"])
              var events = {};
 
             var d = new Date();//get the date of today
+
              $http.get(dataUrl)
                  .success(function (data){
                      events.items = data;
@@ -41,7 +42,7 @@ angular.module("tempTwo",["ngRoute"])
                 		break;
                 	}
                 }
-                return daysEvent
+                return daysEvent;
              }
                $scope.sizes = events;
 
@@ -127,12 +128,20 @@ angular.module("tempTwo",["ngRoute"])
              
             
 
-            $scope.showDetails = function (Dday,Dmonth){
+            $scope.showDetails = function (DYear,Dday,Dmonth){
                //Dday is the day to show the 
-                 $scope.urll = Dday;
+                
+                
+                      	DYear = DYear.toString();
+                      	Dday = Dday.toString();
+                      	Dmonth = Dmonth.toString();
+                      	//break;
+                        var dayID = DYear.concat(Dmonth);
+                        dayID = dayID.concat(Dday);
+                        $scope.urll = dayID;
               
             }
-            $scope.test = sharedProperties.getObject();
+            //$scope.test = sharedProperties.getObject();
             $scope.lastOrNext = function (index) {
                     $scope.numberOfDay = new Date(Year, index + 1, 0).getDate();
                     $scope.todayMonth = index + 1;
@@ -150,9 +159,32 @@ angular.module("tempTwo",["ngRoute"])
                 return ratings;
               }
           })
-          .controller("tempCtrl2", function ($scope, $routeParams, $http){
-               $scope.test = $routeParams.Deday;
-           });
+          .controller("tempCtrl2" ,function ($scope,  $http, $routeParams){
+               
+               var events = {};
+                var params = $routeParams.Deday;
+                $scope.test = params;
+             $http.get("http://localhost:7707/events.json")
+                 .success(function (data){
+                     events.items = data;
+                     var selectItem ={};
+                     for(var i = 0; i < events.items.length; i ++){
+                     	if(events.items[i].ID == params){
+                     		$scope.Ditem = events.items[i].events;
+                     		selectItem = events.items[i];
+                     	}
+                     }
+                     $scope.add = function (eventC){
+                         selectItem.events.push(eventC).$save();
+                     }
+                 })
+                 .error(function (error){
+                      events.items = error;
+                 });
+                 //$scope.hh = events.items;
+                
+                
+          });
 
 
          

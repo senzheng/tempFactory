@@ -1,17 +1,26 @@
 <div class="container" ng-controller = "tempCtrl2">
       {{test}}
-      <h4>{{Ditem.year}}</h4>
+      {{hh}}
+      <h4>{{year}}</h4>
       <table class="table table-striped">
         <tr>
           <td>Time</td>
           <td>Event</td>
           <td>Finished</td>
+          <td>Operation</td>
         </tr>
-        <tr ng-repeat="item in Ditem.events" >
+        <tr ng-repeat="item in Ditem" >
           <td>{{item.time}}</td>
           <td>{{item.contents}}</td>
           <td>{{item.Done}}</td>
+          <td><Button class="btn btn-default" >Mark/Unmark</Button></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="time" ng-model="itemC.events.time" /></td>
+          <td><input type="text" name="content" ng-model="itemC.events.contents" /></td>
+          <td><input type="text" name="Done" ng-model="itemC.events.Done" value="False" disabled></td>
+          <td><Button class="btn btn-default" type="button" ng-click="add(itemC.events)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></td>
         </tr>
       </table>
-      </div> 
-     </body>
+ </div> 
+  
