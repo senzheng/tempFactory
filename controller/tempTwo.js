@@ -175,8 +175,13 @@ angular.module("tempTwo",["ngRoute"])
                      	}
                      }
                      $scope.add = function (eventC){
-                         selectItem.events.push(eventC).$save();
+                         selectItem.events.push(eventC);
+                         $http.post("http://localhost:7707/events.json", selectItem).success(function (data){
+                          $scope.Ditem = selectItem;
+                           $scope.itemC.events = null;
+                         });
                      }
+
                  })
                  .error(function (error){
                       events.items = error;
